@@ -72,10 +72,30 @@ sentence = raw_input ("Write a sentence: ")
 tmp = sentence.split()
 
 for tmp in tmp:
-    print(tmp)
+    print tmp
 
 ## 6 ## 
 
+'''When building and enclosure for a python the amount of area at the base of the enclosure should be
+proportionate to the length of the snake. The minimum needed is 1/2 square foot for each foot in
+length up to and including 6 and 3/4 square foot for each foot after that.
+e.g. 9' python needs 5.25 square feet (6 * ½ + 3 * ¾)
+Create a program that asks the user how long their python is and tell them the minimum area they
+need for the base of its enclosure.
+'''
+
+python = input('Write the size of python: ')
+minarea = 0.0
+
+#The minimum needed is 1/2 square foot for each foot in length up to and including 6
+if python <= 6:
+    minarea = float(python)*1/2
+#3/4 square foot for each foot after that
+else:
+    minarea = (float(python) - 6)*3/4
+    minarea = 3 + minarea
+    
+print minarea
 
 ## 7 ##
 
@@ -89,4 +109,27 @@ if palindrome == palindrome[::-1]:
     print 'True'
 else:
     print 'False'
+
+
+## 8 ##
+
+''' As you might know, the persistence of a number is the number of steps it takes to get a one-digit
+number when separating the digits and multiplying them together.  What you may not have noticed
+is that persistence is inherently recursive.  The persistence of any one-digit number is zero. The
+persistence of any other number is one plus the persistence of the digits multiplied together. Create a
+recursive function called persistence that computes the persistence of any whole number. '''
+
+import operator
+
+def persistence (x, count=0):
+
+   while x >= 10 :
+      digits = list(map(int, str(x)))
+      num = reduce(operator.mul,digits)
+      return persistence(num,count+1)
+   if x < 10:
+      return count   
+   
+print persistence(39)
+
     
